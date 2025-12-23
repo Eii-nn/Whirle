@@ -11,7 +11,7 @@ export default function Landing() {
           alt="Whirl logo"
           className="ml-15 h-5 md:h-7 w-15 drop-shadow"
         />
-        <span className="text-white text-5x1 md:text-base font-semibold tracking-wide">HIRL</span>
+        <span className="text-white text-5x1 md:text-base font-semibold tracking-wide">hirl</span>
       </div>
       <button> 
           <a
