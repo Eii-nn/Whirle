@@ -1,4 +1,4 @@
-import { X, User } from 'lucide-react';
+import { X } from 'lucide-react';
 import type { User as UserType } from '../../Services/api';
 
 interface ProfileModalProps {

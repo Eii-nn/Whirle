@@ -1,14 +1,13 @@
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
-import { LogOut, User, X, Menu, MessageCircle, Users } from 'lucide-react';
+import { LogOut, User, X, MessageCircle, Users } from 'lucide-react';
 import type { User as UserType } from '../../Services/api';
 import type { Friend } from '../../Services/friendshipApi';
 import { getFriends } from '../../Services/friendshipApi';
 import { clearSessionData } from '../../utils/auth';
 import Logo from '../../assets/icons/Logo.svg';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080';
-const MAX_AVATAR_BYTES = 500 * 1024;
+
 
 interface ChatLayoutProps {
     user: UserType | null;
@@ -33,21 +32,21 @@ interface ChatLayoutProps {
 
 export const ChatLayout = ({
     user,
-    setUser,
+    setUser: _setUser,
     friends,
     setFriends,
     friendsLoading,
     setFriendsLoading,
     selectedFriend,
     onFriendClick,
-    showProfileModal,
+    showProfileModal: _showProfileModal,
     setShowProfileModal,
     profileAvatarSrc,
-    uploadingAvatar,
-    uploadError,
-    fileInputRef,
-    handleAvatarChange,
-    formatBirthdate,
+    uploadingAvatar: _uploadingAvatar,
+    uploadError: _uploadError,
+    fileInputRef: _fileInputRef,
+    handleAvatarChange: _handleAvatarChange,
+    formatBirthdate: _formatBirthdate,
     onRemoveFriend,
     onBlockFriend,
 }: ChatLayoutProps) => {
@@ -94,10 +93,6 @@ export const ChatLayout = ({
     const handleLogout = () => {
         clearSessionData();
         navigate('/login');
-    };
-
-    const closeProfileModal = () => {
-        setShowProfileModal(false);
     };
 
     return (

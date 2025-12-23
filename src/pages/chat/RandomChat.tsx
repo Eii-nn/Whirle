@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
-import { UserPlus, Clock, Check, Send, Loader2, Menu } from 'lucide-react';
+import { UserPlus, Clock, Check, Send, Menu } from 'lucide-react';
 import type { RandomChatMessage, SocketState, RandomState } from '../../types/chat';
 import { handleServerOffline } from '../../utils/auth';
 import StartWhirlIcon from '../../assets/icons/startwhirl.svg';
@@ -16,7 +16,7 @@ export const RandomChat = () => {
     
     const [socketState, setSocketState] = useState<SocketState>('disconnected');
     const [randomState, setRandomState] = useState<RandomState>('idle');
-    const [statusText, setStatusText] = useState<string>('Tap Start Whirl to find a partner');
+    const [_statusText, setStatusText] = useState<string>('Tap Start Whirl to find a partner');
     const [chatInput, setChatInput] = useState('');
     const [chatMessages, setChatMessages] = useState<RandomChatMessage[]>([]);
     const [friendRequestStatus, setFriendRequestStatus] = useState<'idle' | 'pending' | 'sent' | 'received' | 'success'>('idle');
@@ -307,13 +307,6 @@ export const RandomChat = () => {
         });
         setChatInput('');
         sendSocketMessage({ type: 'message_random', content });
-    };
-
-    const skipRandom = () => {
-        if (randomState === 'paired' || randomState === 'queueing') {
-            leaveRandom();
-        }
-        setTimeout(() => joinRandom(), 50);
     };
 
     const handleAddFriend = () => {
